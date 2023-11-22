@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mouse Events Assignment 1</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Your jQuery code here
+            $("#myDiv").mouseover(function () {
+                $(this).css("background-color", "blue");
+            });
+
+            $("#myDiv").mouseout(function () {
+                $(this).css("background-color", ""); // revert to the original color
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div id="myDiv" style="width: 200px; height: 200px; background-color: lightcoral;">
+    Hover over me
+</div>
+
+</body>
+</html>

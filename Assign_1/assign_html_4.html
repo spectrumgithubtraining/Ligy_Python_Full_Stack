@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple HTML Form</title>
+    <style>
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select, textarea {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Simple HTML Form</h2>
+
+    <form action="" method="post">
+        <!-- Text Input -->
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+        <!-- Radio Buttons -->
+        <label>Gender:</label>
+        <label for="male"><input type="radio" id="male" name="gender" value="male"> Male</label>
+        <label for="female"><input type="radio" id="female" name="gender" value="female"> Female</label>
+
+        <!-- Checkbox -->
+        <label for="subscribe"><input type="checkbox" id="subscribe" name="subscribe" value="yes"> Subscribe to newsletter</label>
+
+        <!-- Submit Button -->
+        <input type="submit" value="Submit">
+
+        <!-- Button -->
+        <input type="button" value="Click me" onclick="alert('Button clicked!')">
+    </form>
+
+</body>
+</html>

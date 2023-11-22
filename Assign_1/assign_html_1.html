@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complex Table Example</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .center-text {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Complex Table Example</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th rowspan="2">Name</th>
+                <th colspan="2">ADDRESS</th>
+                <th rowspan="2">Phone Number</th>
+            </tr>
+            <tr>
+                <th>Permananet Address</th>
+                <th>Temporary Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Data 1,1</td>
+                <td>Data 1,2</td>
+                <td>Data 1,3</td>
+                <td>Data 1,4</td>
+            </tr>
+            <tr>
+                <td>Data 2,1</td>
+                <td>Data 2,2</td>
+                <td>Data 2,3</td>
+                <td>Data 2,4</td>
+            </tr>
+            <tr>
+                <td>Data 3,1</td>
+                <td>Data 3,2</td>
+                <td>Data 3,3</td>
+                <td>Data 3,4</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

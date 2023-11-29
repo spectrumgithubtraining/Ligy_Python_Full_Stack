@@ -1,0 +1,78 @@
+{% load static %}
+{% block body %}
+{% include 'header.html' %}
+
+<section id="book-a-table" class="book-a-table">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title">
+            
+            <p>Login To Your Account</p>
+        </div>
+
+        <form action="" method="post" role="form" class="php-email-form" onsubmit="return validateForm()">
+            <div class="section-title">
+            
+                <p>Login with Social Media</p>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16" style="width: 200px; height:50px;">
+                    <path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z"/>
+                  </svg>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 form-group">
+                    <input type="text" name="username" class="form-control" id="name" placeholder="Your Username"
+                        data-rule="minlen:4">
+                    <div class="validate" id="username-error"></div>
+                </div>
+                <br>
+
+                <div class="col-lg-6 col-md-6 form-group">
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Password"
+                        data-rule="minlen:4">
+                    <div class="validate" id="password-error"></div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 30px; margin-left: 200px;">
+                <button type="submit">Login</button>
+                <div>New User? <span><a href="/reg">Create Account</a></span></div>
+                
+            </div>
+        </form>
+
+    </div>
+</section>
+
+<script>
+    function validateForm() {
+        var username = document.getElementById('name').value;
+        var password = document.getElementById('password').value;
+
+        // Validate username: at least 4 characters, contains both numbers and letters
+        if (username.length < 8 || !containsNumberAndLetter(username)) {
+            alert('Username must be at least 8 characters long and contain both numbers and letters.');
+            return false;
+        }
+
+        // Validate password: at least 4 characters, contains uppercase, lowercase, and symbol
+        if (password.length < 8 || !containsUppercaseLowercaseSymbol(password)) {
+            alert('Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one symbol.');
+            return false;
+        }
+
+        // If validation passes, the form will be submitted
+        return true;
+    }
+
+    function containsNumberAndLetter(str) {
+        // Check if the string contains at least one number and one letter
+        return /\d/.test(str) && /[a-zA-Z]/.test(str);
+    }
+
+    function containsUppercaseLowercaseSymbol(str) {
+        // Check if the string contains at least one uppercase letter, one lowercase letter, and one symbol
+        return /[A-Z]/.test(str) && /[a-z]/.test(str) && /[^\w\d]/.test(str);
+    }
+</script>
+
+{% include 'footer.html' %}
+{% endblock %}

@@ -1,0 +1,116 @@
+{% load static %}
+{% block body %}
+{% include 'header.html' %}
+
+<section id="book-a-table" class="book-a-table">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title"></div>
+
+        <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form" data-aos="fade-up"
+            data-aos-delay="100" onsubmit="return validateForm()">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 form-group">
+                    <input type="text" name="username" class="form-control" id="name" placeholder="Your username"
+                        data-rule="minlen:4" data-msg="Please enter at least 4 characters">
+                    <div class="validate" id="name-error"></div>
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email"
+                        data-rule="email" data-msg="Please enter a valid email">
+                    <div class="validate" id="email-error"></div>
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                    <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone"
+                        data-rule="minlen:10" data-msg="Please enter at least 10 characters">
+                    <div class="validate" id="phone-error"></div>
+                </div>
+            </div>
+            <div class="form-group mt-3">
+                <textarea class="form-control" name="address" id="address" rows="5" placeholder="Address"
+                    data-rule="minlen:4" data-msg="Please enter at least 4 characters"></textarea>
+                <div class="validate" id="address-error"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 form-group">
+                    <input type="password" name="password" class="form-control" id="password"
+                        placeholder="Your Password" data-rule="minlen:8" data-msg="Please enter at least 8 characters">
+                    <div class="validate" id="password-error"></div>
+                </div>
+                <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0">
+                    <input type="password" class="form-control" name="password1" id="password-confirm"
+                        placeholder="Your Confirm Password" data-rule="minlen:8"
+                        data-msg="Please enter at least 8 characters">
+                    <div class="validate" id="password-confirm-error"></div>
+                </div>
+            </div>
+
+            <div class="text-center"><button type="submit">Register</button></div>
+        </form>
+
+    </div>
+</section>
+
+<script>
+    function validateForm() {
+        var username = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var phone = document.getElementById('phone').value;
+        var address = document.getElementById('address').value;
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('password-confirm').value;
+
+        // Validation for username
+        if (username.length < 4 || !containsNumberAndLetter(username)) {
+            alert('Username must be at least 8 characters long and contain both numbers and letters.');
+            return false;
+        }
+
+        // Validation for email
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert('Please enter a valid email address.');
+            return false;
+        }
+
+        // Validation for phone
+        if (phone.length < 10 || !phone.startsWith('+91')) {
+            alert('Please enter a valid phone number starting with +91.');
+            return false;
+        }
+
+        // Validation for address
+        if (address.length < 4) {
+            alert('Please enter at least 4 characters for your address.');
+            return false;
+        }
+
+        // Validation for password
+        if (!validatePassword(password)) {
+            alert('Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one symbol.');
+            return false;
+        }
+
+        // Validation for confirm password
+        if (confirmPassword.length < 8 || confirmPassword !== password) {
+            alert('Passwords do not match.');
+            return false;
+        }
+
+        // If all validations pass, the form will be submitted
+        return true;
+    }
+
+    function containsNumberAndLetter(input) {
+        return /(?=.*\d)(?=.*[a-zA-Z])/.test(input);
+    }
+
+    function validatePassword(password) {
+        // Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one symbol
+        var passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+]).{8,}$/;
+        return passwordRegex.test(password);
+    }
+</script>
+
+{% include 'footer.html' %}
+{% endblock %}

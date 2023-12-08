@@ -1,11 +1,12 @@
+# urls.py
+from django.urls import path
+from .views import TaskListView, TaskCreateView, TaskUpdateView,TaskDeleteView
 
-from django.urls import path,include
-from.import views
-
-#cbv:class based view:
 urlpatterns = [
-    path('',views.add,name="add"),
-    path('delete/<int:id>/',views.delete,name="delete"),
-    path('update/<int:id>/',views.update,name='update'),
-   
+    path('', TaskListView.as_view(), name='task_list'),
+    path('task/new/', TaskCreateView.as_view(), name='task_create'),
+    path('task/<int:pk>/edit/', TaskUpdateView.as_view(), name='task_edit'),
+    path('task/<int:pk>/delete/', TaskDeleteView.as_view(), name='task_delete'),
 ]
+
+

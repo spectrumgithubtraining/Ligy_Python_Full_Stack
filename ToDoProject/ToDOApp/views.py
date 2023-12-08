@@ -1,35 +1,29 @@
-from django.shortcuts import render,redirect
-from.forms import TodoForm
-from.models import Task
+# views.py
+from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from .models import Task
+from .forms import TaskForm
 
-def add(request):
-    task1=Task.objects.all()
-    if request.method =='POST':
-        name=request.POST.get('name')
-        priority=request.POST.get('priority')
-        date=request.POST.get('date')
-        task=Task(name=name,priority=priority,date=date)
-        task.save()
-    return render(request,"home.html",{'task1':task1})
+class TaskListView(ListView):
+    model = Task
+    template_name = 'task_list.html'
+    context_object_name = 'tasks'
 
+class TaskCreateView(CreateView):
+    model = Task
+    form_class = TaskForm
+    template_name = 'task_form.html'
+    success_url = reverse_lazy('task_list')
 
-#delete item
-def delete(request,id):
-    if request.method =='POST':
-        deletetask=Task.objects.get(id=id)
-        deletetask.delete()
-        return redirect('/')
-    return render(request,'delete.html')
-
-
-
-#update
-def update(request,id):
-    taskupdate=Task.objects.get(id=id)
-    taskform=TodoForm(request.POST or None,request.FILES,instance=taskupdate)
-    if taskform.is_valid():
-        taskform.save()
-        return redirect('/')
-    return render(request,'update.html',{'taskform':taskform,'taskupdate':taskupdate})
-
-# Create your views here.
+class TaskUpdateView(UpdateView):
+    model = Task
+    form_class = TaskForm
+    template_name = 'task_form.html'
+    success_url = reverse_lazy('task_list')
+    
+    
+class TaskDeleteView(DeleteView):
+    model = Task
+    template_name = 'task_confirm_delete.html'
+    success_url = reverse_lazy('task_list')

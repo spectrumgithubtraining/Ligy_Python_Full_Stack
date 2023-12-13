@@ -1,0 +1,11 @@
+# my_string = "Hello, World!"
+# stripped_string = my_string.strip()
+# print(stripped_string)
+
+# original_string = "   Hello, World!   "
+# left_stripped_string = original_string.lstrip()
+# print(left_stripped_string)  # Output: "Hello, World!   "
+
+# original_string = "   Hello, World!   "
+# right_stripped_string = original_string.rstrip()
+# print(right_stripped_string)  # Output: "   Hello, World!"
